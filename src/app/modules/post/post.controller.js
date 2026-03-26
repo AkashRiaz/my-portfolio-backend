@@ -1,6 +1,5 @@
 import { PostService } from "./post.service.js";
 
-
 const insertPostIntoDB = async (req, res) => {
   const payload = req.body;
   const post = await PostService.insertPostIntoDB(payload);
@@ -11,6 +10,16 @@ const insertPostIntoDB = async (req, res) => {
   });
 };
 
+const getPostsFromDB = async (req, res) => {
+  const posts = await PostService.getPostsFromDB();
+  res.status(200).json({
+    success: true,
+    message: "Posts fetched successfully",
+    data: posts,
+  });
+};
+
 export const PostController = {
   insertPostIntoDB,
+  getPostsFromDB,
 };
